@@ -1,6 +1,7 @@
 import streamlit as st
 import os
 import base64
+import streamlit.components.v1 as components
 
 def resume_page():
     # 设置页面配置（与其他页面保持一致）
@@ -140,32 +141,23 @@ def resume_page():
     if os.path.exists(pdf_file_path):
         with open(pdf_file_path, "rb") as pdf_file:
             PDFbyte = pdf_file.read()
-
-        # 使用深米白色按钮并调整位置到右侧
-        st.markdown("""
+            
+        # 使用Streamlit组件创建带样式的下载按钮
+        pdf_b64 = base64.b64encode(PDFbyte).decode()
+        button_html = f"""
         <div class="button-container">
-            <a href="javascript:void(0);" class="resume-button" onclick="document.getElementById('download-resume').click()">
+            <a href="data:application/pdf;base64,{pdf_b64}" 
+               class="resume-button" 
+               download="Linhan_FU_Resume.pdf">
                 Unfold My Story 🔍
             </a>
-            <input type="file" id="download-resume" style="display:none;" />
         </div>
-        """, unsafe_allow_html=True)
-        
-        # 添加JavaScript下载功能
-        st.markdown(f"""
-        <script>
-            document.querySelector('.resume-button').addEventListener('click', function() {{
-                var link = document.createElement('a');
-                link.href = 'data:application/pdf;base64,{base64.b64encode(PDFbyte).decode()}';
-                link.download = 'Linhan_FU_Resume.pdf';
-                link.click();
-            }});
-        </script>
-        """, unsafe_allow_html=True)
+        """
+        components.html(button_html, height=60)
     else:
         st.warning("Resume PDF file not found")
 
-    # 联系方式卡片 - 添加颜色底框（删除名字卡片后直接显示联系方式）
+    # 联系方式卡片
     st.markdown("""
     <div class="content-card">
         <h3 class="card-subtitle">Where to Find Me</h3>
@@ -177,6 +169,7 @@ def resume_page():
     </div>
     """, unsafe_allow_html=True)
 
+    # 其余内容保持不变...
     # 专业概述卡片
     st.markdown("""
     <div class="content-card">
@@ -240,3 +233,7 @@ def resume_page():
         </div>
         """, unsafe_allow_html=True)
     st.markdown('</div>', unsafe_allow_html=True)
+
+# 运行页面
+if __name__ == "__main__":
+    resume_page()
