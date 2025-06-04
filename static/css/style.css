@@ -1,0 +1,59 @@
+/* Main styles */
+.main {
+    padding: 2rem;
+    background-color: #DCD0C8;
+}
+
+/* Typography */
+h1, h2, h3, h4 {
+    color: #8B8378; /* 浅棕色标题 */
+}
+
+p {
+    color: #696969; /* 深灰色正文 */
+}
+
+/* Sidebar */
+.sidebar .sidebar-content {
+    background-color: #A9A9A9;
+    color: white;
+}
+
+/* Form elements */
+.stRadio > div {
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #F5F5F5; /* 浅灰色选项背景 */
+    border: 1px solid #A9A9A9; /* 深灰色边框 */
+}
+
+.stRadio > div:hover {
+    background-color: #DCD0C8; /* 悬停时米驼色 */
+}
+
+/* Buttons */
+button {
+    background-color: #8B8378; /* 浅棕色按钮 */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 15px;
+}
+
+button:hover {
+    background-color: #696969; /* 悬停时深灰色 */
+}
+
+/* Footer */
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #F5F5F5; /* 浅灰色页脚 */
+    color: #8B8378; /* 浅棕色文字 */
+    text-align: center;
+    padding: 10px;
+    font-size: 0.8rem;
+    border-top: 1px solid #A9A9A9; /* 深灰色边框 */
+} 
